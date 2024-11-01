@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Picture hover zoomer + display animation hack</title>
+  <style>
+    body {
+      background-color: black;
+    }
+
+    .wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 150px;
+      flex-direction: column;
+    }
+
+    .thumbnail__image {
+      width: 300px;
+      height: 200px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .thumbnail__image--zoom {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.5s ease;
+    }
+
+
+    .thumbnail__image:hover .thumbnail__image--zoom {
+      transform: scale(1.2);
+
+    }
+
+    .thumbnail__image:hover+.hidden-text {
+
+      display: block;
+      animation: blockEmerge 2s ease-in-out;
+    }
+
+    .hidden-text {
+      display: none;
+      color: red;
+      font-size: 18px;
+      text-transform: capitalize;
+      text-decoration: dashed 4px red;
+    }
+
+    @keyframes blockEmerge {
+      0% {
+        display: none;
+        opacity: 0;
+      }
+
+      1% {
+        display: block;
+        opacity: 0;
+      }
+
+      100% {
+        display: block;
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <p style="color:red; font-weight: 900; text-transform: uppercase;"> Hover me, right now!</p>
+    <div class="thumbnail__image">
+      <img src="winxp.png" alt="" class="thumbnail__image--zoom">
+    </div>
+    <p class="hidden-text">Animation of display property via hack!</p>
+  </div>
+
+</body>
+
+</html>
